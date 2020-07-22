@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Debug/pass.png</file>
+        <file>Debug/background.png</file>
+    </qresource>
+    <qresource prefix="/Debug"/>
+</RCC>
