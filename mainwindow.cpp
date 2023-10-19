@@ -8,6 +8,8 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->spinBox->findChild<QLineEdit*>()->setReadOnly(true);
+    ui->spinBox->findChild<QLineEdit*>()->setFocusPolicy(Qt::NoFocus);
 }
 
 MainWindow::~MainWindow()
@@ -15,7 +17,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_genButton_clicked()
 {
     ui->lineEdit->setText("");
     QString nums="0123456789";
@@ -46,17 +48,28 @@ void MainWindow::on_pushButton_clicked()
     else{
         ui->lineEdit->setText("Choose one");
     }
+    this->resizeFont();
 }
 
-void MainWindow::on_pushButton_2_clicked()
+void MainWindow::on_copyButton_clicked()
 {
     QClipboard *clipboard = QApplication::clipboard();
     QString originalText = ui->lineEdit->text();
     clipboard->setText(originalText);
 }
-/*
-void MainWindow::on_pushButton_3_clicked()
+
+void MainWindow::resizeFont()
 {
-    this->close();
+    qDebug() << ">>>>>>>>>>>>>>>>>>>>>>" <<  ui->lineEdit->text().count();
+    if (ui->lineEdit->text().count() > 25) {
+        ui->lineEdit->setStyleSheet(css_stil_text2);
+        }
+    else if (ui->lineEdit->text().count() > 20) {
+        ui->lineEdit->setStyleSheet(css_stil_text3);
+    }
+    else {
+        ui->lineEdit->setStyleSheet(css_stil_android);
+    }
+
 }
-*/
+
